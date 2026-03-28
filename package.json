@@ -1,0 +1,11 @@
+{
+  "name": "github-agent-root",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node src/index.js",
+    "build": "npm install"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
