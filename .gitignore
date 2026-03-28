@@ -1,0 +1,6 @@
+# Safety net — catches anything missed by nested .gitignores
+.env
+node_modules/
+dist/
+.DS_Store
+Thumbs.db
