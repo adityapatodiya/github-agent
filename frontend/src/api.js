@@ -1,29 +1,9 @@
-// src/api.js
-// All communication with the backend lives here.
-// The two exports are used by App.tsx:
-//   startAgentStream – POSTs to /api/agent/run and reads SSE events from the response
-//   checkHealth      – pings GET /health to verify the backend is reachable
 
 import axios from 'axios';
 
 // The base URL of the backend Express server (matches PORT in backend/.env)
-const API_BASE = 'http://localhost:3001';
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
-// ─── startAgentStream ─────────────────────────────────────────────────────────
-//
-// Starts the agent via POST /api/agent/run and reads the SSE response stream.
-//
-// Why fetch instead of EventSource?
-//   The browser's built-in EventSource only supports GET requests.
-//   Our backend uses POST (so Express middleware like cors/json works cleanly),
-//   so we use fetch() and manually read the response body as a text stream.
-//
-// Parameters:
-//   onEvent(data)   – called for EVERY JSON event: { type, message, repo, ... }
-//   onError(msg)    – called with a string if the request itself fails
-//   onDone(data)    – called once when the stream ends ("[DONE]" sentinel received)
-//
-// Returns an AbortController — call .abort() to cancel mid-run if needed.
 export function startAgentStream(onEvent, onError, onDone) {
   console.log('[API] Opening SSE stream to', `${API_BASE}/api/agent/run`);
 
