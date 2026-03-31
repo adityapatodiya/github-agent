@@ -2,4 +2,4 @@
 cmds = ["cd backend && npm install"]
 
 [start]
-cmd = "cd backend && node src/index.js"
+cmd = "node backend/src/index.js"
