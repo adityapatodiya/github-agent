@@ -22,7 +22,16 @@ const app = express();
 // ── Middleware ────────────────────────────────────────────────────────────────
 
 // Only allow requests from the Vite dev server — tightens security slightly
-app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://github-agent-nine.vercel.app',
+    'https://github-agent-dsso53c41-adityapatodiyas-projects.vercel.app',
+    /\.vercel\.app$/
+  ],
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
 
 // Parse JSON bodies (used by Express, not strictly needed for SSE but good practice)
 app.use(express.json());
