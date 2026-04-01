@@ -4,6 +4,7 @@ import axios from 'axios';
 // The base URL of the backend Express server (matches PORT in backend/.env)
 const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
+
 export function startAgentStream(onEvent, onError, onDone) {
   console.log('[API] Opening SSE stream to', `${API_BASE}/api/agent/run`);
 
